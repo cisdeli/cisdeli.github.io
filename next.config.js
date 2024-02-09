@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  basePath: "/gh-pages-test",
+  basePath: "/cisdeli.github.io",
 };
 
 module.exports = nextConfig;
