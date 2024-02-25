@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 export default function Home() {
-  return (
-    <div>
-      Hello World with Next.js. <Link href="/about">About</Link>
-    </div>
-  );
+    return (
+        <div>
+            <h1 className="text-blue-500">I'm blue!</h1>
+        </div>
+    );
 }
