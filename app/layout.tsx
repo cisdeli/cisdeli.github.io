@@ -1,8 +1,8 @@
 import '@/app/ui/global.css';
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Kumbh_Sans } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const kumbh_sans = Kumbh_Sans({ subsets: ["latin"] });
 export const metadata: Metadata = {
     title: "Personal Portfolio",
     description: "My personal porfifolio with Next.js on GitHub Pages",
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={inter.className}>{children}</body>
+            <body className={`${kumbh_sans.className} antialiased`}>{children}</body>
         </html>
     );
 }

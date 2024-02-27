@@ -1,9 +1,12 @@
 import Link from "next/link";
+import HeroHeader from '@/app/ui/heroHeader'
+import Hero from '@/app/ui/heroContents';
 
 export default function Home() {
     return (
-        <div>
-            <h1 className="text-blue-500">I'm blue!</h1>
+        <div className="bg-dark">
+            <HeroHeader />
+            <Hero />
         </div>
     );
 }

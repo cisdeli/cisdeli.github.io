@@ -1,0 +1,18 @@
+:root {
+    --background-color: #080808;
+    --white: #FFFFFF;
+    --dark-white: #D7CDCC;
+    --gray: #59656F;
+    --dark-purple: #1D1E2C;
+}
+
+.hero-title {
+    color: var(--white);
+    font-size: 15vh;
+    font-weight: bold;
+    text-indent: -1.2px;
+}
+
+.hero-header-text {
+    color: var(--white);
+}
