@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    /* font-family:; */
-    background-color: #000000;
+:root {
+    --background-color: #080808;
+    --white: #FFFFFF;
+    --dark-white: #D7CDCC;
+    --gray: #59656F;
+    --dark-purple: #1D1E2C;
 }
 
+body {
+    /* font-family:; */
+    background-color: var(--background-color);
+}
