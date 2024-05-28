@@ -1,0 +1,35 @@
+:root {
+    --background-color: #080808;
+    --white: #FFFFFF;
+    --dark-white: #D7CDCC;
+    --gray: #59656F;
+    --dark-purple: #1D1E2C;
+}
+
+.header-container{
+    margin-left: 5.5vw;
+}
+.header-text {
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+
+.header-text.active {
+    background-image: linear-gradient(45deg,
+            #894ed2 0%,
+            #1fa6c1 25%,
+            #1794ab 50%,
+            #894ed2 100%);
+    background-size: 100%;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-weight: 700;
+}
+
+.header-text:hover {
+    font-style: oblique 5deg;
+}
