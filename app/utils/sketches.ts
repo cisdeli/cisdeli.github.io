@@ -44,7 +44,7 @@ export const threeDSketch: Sketch = (p5: any) => {
 
 export const phyllotaxisSketch: Sketch = (p5: any) => {
     let n = 0;
-    let c = 4;
+    let c = 7;
     p5.setup = () => {
         p5.createCanvas(width, height);
     }
@@ -58,8 +58,12 @@ export const phyllotaxisSketch: Sketch = (p5: any) => {
 
         p5.colorMode(p5.HSB)
         p5.fill(n % 256, 255, 255);
-        p5.ellipse(x, y, 8, 8);
-        n++;
+        p5.ellipse(x, y, 12, 12);
+        if (n < 500) {
+            n++;
+        } else {
+            p5.noLoop();
+        }
     }
 }
 
