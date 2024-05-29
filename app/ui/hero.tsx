@@ -14,7 +14,7 @@ const Hero = () => {
                         I am a Brazilian <span className="font-bold">Software Developer</span> and <span className="font-bold">Machine Learning Engineer </span>
                         currently at <span className="gradient"><a href="https://ciampittilab.wixsite.com/ciampitti-lab" target="_blank">Ciampittilab </a></span>
                         focusing on developing solutions for agronomy and helping bridge the gap between the field and technology.
-                        I'm pursuing a <span className="font-bold">Computer Science Degree</span> at <span className="font-bold">University of São Paulo</span> that gave me
+                        I'm have a <span className="font-bold">Computer Science Degree</span> from <span className="font-bold">University of São Paulo</span>, which gave me
                         a strong background in <span className="font-bold">Programming</span> and <span className="font-bold">Mathematics</span>.
                         My areas of interest are <span className="font-bold">Image Processing, Machine Learning, Computer Vision, Data Science and Precision Agriculture</span>.
                         My tech stack includes <span className="font-bold">C, C++, Python, PyTorch, TensorFlow, Java, JavaScript, TypeScript, React.js, Next.js, Lua, Linux, and Neovim (btw)</span>
