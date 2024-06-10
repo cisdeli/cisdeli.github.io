@@ -4,6 +4,6 @@ Created using next.js
 
 ## to-Do
 
-- [ ] Fix p5 performance issue related to scrolling the page.
-- [ ] Add variability to the wave separator.
-- [ ] Fix sections with content.
+- [x] Fix p5 performance issue related to scrolling the page.
+- [x] Fix sections with content.
+- [ ] Add pacman with threads.
