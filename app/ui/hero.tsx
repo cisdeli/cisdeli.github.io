@@ -20,11 +20,13 @@ const Hero = () => {
                         My tech stack includes <span className="font-bold">C, C++, Python, PyTorch, TensorFlow, Java, JavaScript, TypeScript, React.js, Next.js, Lua, Linux, and Neovim (btw)</span>
                         , I'm also getting better at Rust and Go. My native language is <span className="font-bold">Portuguese </span>
                         and I've been studying <span className="font-bold">English</span> since I was five years old.
-                        Take a look around to learn more about my experience and projects.
+                        Use a device with a big screen for a better UX and take a look around to learn more about my experience and projects.
                     </p>
                 </div>
             </div>
-            <NextReactP5Wrapper sketch={fernSketch} />
+            <div className="hidden md:block">
+                <NextReactP5Wrapper sketch={fernSketch} />
+            </div>
         </div>
     );
 };
