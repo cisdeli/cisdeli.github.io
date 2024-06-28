@@ -36,7 +36,7 @@ const FirstSection = () => {
                             <text className="item-title">Image Processing</text>
                             <text className="section-subtitle">NDVI, NDWI and classifying image data</text>
                             <p className="item-text">
-                                The main objective is to classify the landscape of an satellite image to provide information for environmental al studies. The datasets used are from the satellite
+                                The main objective is to classify the landscape of an satellite image to provide information for environmental studies. The datasets used are from the satellite
                                 <span className="gradient"><a href="https://sentiwiki.copernicus.eu/web/s2-mission" target="_blank"> Sentinel-2 </a></span>
                                 and Google Earth. The input images are rasters formed by eight bands that will be processed with the intention of providing indexes and other usefull statistics. The landscape and forest classification is determined by a machine learning method called Naive Bayes.
                                 Access the source code by following this
