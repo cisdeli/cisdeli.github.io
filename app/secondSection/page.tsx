@@ -31,7 +31,7 @@ const SecondSection = () => {
                             <text className="item-title">Corn Depth</text>
                             <text className="section-subtitle">High-throughput, field-level image analysis of corn cobs</text>
                             <p className="item-text">
-                                The Corn Depth project if a follow up from the Corn Grains project. The goal is to develop an algorithm that can estimate the quantity of grains on a corn cob with the husk still on. Crazy right? I agree, but I'm trying my best here. Our initial thesis is that we can model how the volume of a corn cob interacts with the number of grains. The algorithm is already done and we are currently waiting for the in-field tests to proceed. I'll update this topic with more information as soon as I can make it publicly available.
+                                The Corn Depth project is a follow up from the Corn Grains project. The goal is to develop an algorithm that can estimate the quantity of grains on a corn cob with the husk still on. Crazy right? I agree, but I'm trying my best here. Our initial thesis is that we can model how the volume of a corn cob interacts with the number of grains. The algorithm is already done and we are currently waiting for the in-field tests to proceed. I'll update this topic with more information as soon as I can make it publicly available.
                             </p>
                         </div>
                     </div>
