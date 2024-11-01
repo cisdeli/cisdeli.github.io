@@ -3,11 +3,11 @@ import Image from 'next/image'
 import cornGrainsImg from '@/app/assets/out2.png'
 import sorgArchPoster from '@/app/assets/main.png'
 
-const SecondSection = () => {
+const CiampittiLab = () => {
     return (
         <div>
             <Header />
-            <div className='content' id="secondSection">
+            <div className='content' id="ciampitti-lab">
                 <div className="flex flex-row justify-center items-center">
                     <div className="relative isolate px-6 pt-14 lg:px-8">
                         <div className="text-left flex flex-col">
@@ -70,5 +70,5 @@ const SecondSection = () => {
     );
 };
 
-export default SecondSection;
+export default CiampittiLab;
 

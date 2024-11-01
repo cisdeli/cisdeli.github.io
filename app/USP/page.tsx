@@ -5,11 +5,11 @@ import mriImg from '@/app/assets/mri_example.jpeg'
 import geoImg from '@/app/assets/geodata.png'
 import smartDotsGIF from '@/app/assets/smartDots.gif'
 
-const FirstSection = () => {
+const USP = () => {
     return (
         <div>
             <Header />
-            <div className='content' id="firstSection">
+            <div className='content' id="USP">
                 <div className="flex flex-row justify-center items-center">
                     <div className="relative isolate px-6 pt-14 lg:px-8">
                         <div className="text-left flex flex-col">
@@ -75,5 +75,5 @@ const FirstSection = () => {
     );
 };
 
-export default FirstSection;
+export default USP;
 

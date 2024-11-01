@@ -5,9 +5,9 @@ import '@/app/ui/styles/header.css';
 
 const navigation = [
     { name: 'About Me', href: '/' },
-    { name: 'University of São Paulo', href: '/firstSection' },
-    { name: 'Ciampitti Lab', href: '/secondSection' },
-    { name: 'Personal Projects', href: '/thirdSection' },
+    { name: 'University of São Paulo', href: '/USP' },
+    { name: 'Ciampitti Lab', href: '/ciampitti_lab' },
+    { name: 'Personal Projects', href: '/personal_projects' },
     // { name: 'Hobbies', href: '/fourthSection' },
 ];
 

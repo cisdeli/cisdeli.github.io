@@ -3,11 +3,11 @@ import { NextReactP5Wrapper } from "@p5-wrapper/next";
 import Header from '@/app/ui/header'
 import { dcSketch, caSketch, threeDSketch, phyllotaxisSketch } from '@/app/utils/sketches';
 
-const ThirdSection = () => {
+const PersonalProjects = () => {
     return (
         <div>
             <Header />
-            <div className="content" id="thirdSection">
+            <div className="content" id="personal-projects">
                 <div className="flex flex-row justify-center items-center">
                     <div className="relative isolate px-6 pt-14 lg:px-8">
                         <div className="text-left flex flex-col">
@@ -73,6 +73,6 @@ const ThirdSection = () => {
     );
 };
 
-export default ThirdSection;
+export default PersonalProjects;
 
 
