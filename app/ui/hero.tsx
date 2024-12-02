@@ -12,7 +12,6 @@ const Hero = () => {
                     <text className="section-subtitle">Welcome to my portfolio</text>
                     <p className="item-text">
                         I am a Brazilian <span className="font-bold">Software Developer</span> and <span className="font-bold">Machine Learning Engineer </span>
-                        currently at <span className="gradient"><a href="https://ciampittilab.wixsite.com/ciampitti-lab" target="_blank">Ciampittilab </a></span>
                         focusing on developing solutions for agronomy and helping bridge the gap between the field and technology.
                         I have a <span className="font-bold">Computer Science Degree</span> from <span className="font-bold">University of São Paulo</span>, which gave me
                         a strong background in <span className="font-bold">Programming</span> and <span className="font-bold">Mathematics</span>.
@@ -31,5 +30,6 @@ const Hero = () => {
     );
 };
 
+                        // currently at <span className="gradient"><a href="https://ciampittilab.wixsite.com/ciampitti-lab" target="_blank">Ciampittilab </a></span>
 export default Hero;
 
