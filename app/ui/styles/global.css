@@ -245,7 +245,7 @@ body::after {
     gap: 0.5rem;
 }
 
-/* Responsive image inside a section */
+/* Responsive image / video inside a section */
 .section-img {
     width: 100%;
     max-width: 300px;
@@ -260,6 +260,41 @@ body::after {
         margin: 0;
         flex-shrink: 0;
     }
+}
+
+/* Larger variant for newly added images */
+.section-img-lg {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border-radius: 6px;
+}
+
+@media (min-width: 768px) {
+    .section-img-lg {
+        width: auto;
+        max-width: 560px;
+        margin: 0;
+        flex-shrink: 0;
+    }
+}
+
+/* Year badge */
+.year-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.1rem 0.5rem;
+    border-radius: 9999px;
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: var(--subtle);
+    background: rgba(137, 78, 210, 0.08);
+    border: 1px solid rgba(137, 78, 210, 0.18);
+    letter-spacing: 0.08em;
+    vertical-align: middle;
 }
 
 /* Scaled P5 canvas for project pages on mobile */
