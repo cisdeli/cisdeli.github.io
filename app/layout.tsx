@@ -1,11 +1,24 @@
 import '@/app/ui/styles/global.css';
 import type { Metadata } from "next";
-import { Kumbh_Sans } from "next/font/google";
+import { Outfit, Inter } from "next/font/google";
 
-const kumbh_sans = Kumbh_Sans({ subsets: ["latin"] });
+const outfit = Outfit({
+    subsets: ["latin"],
+    variable: "--font-display",
+    weight: ["300", "400", "500", "600", "700", "800"],
+    display: "swap",
+});
+
+const inter = Inter({
+    subsets: ["latin"],
+    variable: "--font-body",
+    weight: ["300", "400", "500"],
+    display: "swap",
+});
+
 export const metadata: Metadata = {
-    title: "Personal Portfolio",
-    description: "My personal porfifolio with Next.js on GitHub Pages",
+    title: "Pedro Cisdeli",
+    description: "Software Developer & ML Engineer — Pedro Cisdeli",
 };
 
 export default function RootLayout({
@@ -15,7 +28,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={`${kumbh_sans.className} antialiased`}>{children}</body>
+            <body className={`${outfit.variable} ${inter.variable} antialiased`}>
+                {children}
+            </body>
         </html>
     );
 }

@@ -5,91 +5,77 @@ import { useState, useEffect } from 'react';
 import '@/app/ui/styles/header.css';
 
 const navigation = [
-    { name: 'About Me', href: '/' },
-    { name: 'University of São Paulo', href: '/USP' },
+    { name: 'About', href: '/' },
+    { name: 'Univ. of São Paulo', href: '/USP' },
     { name: 'Ciampitti Lab', href: '/ciampitti_lab' },
-    { name: 'Personal Projects', href: '/personal_projects' },
-    // { name: 'Hobbies', href: '/fourthSection' },
+    { name: 'Projects', href: '/personal_projects' },
 ];
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
-    
-    // Get current page name
-    const getCurrentPageName = () => {
-        const currentPage = navigation.find(item => item.href === pathname);
-        return currentPage ? currentPage.name : 'About Me';
-    };
-    
-    // Close menu when clicking outside
+
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const hamburgerBtn = document.getElementById('hamburger-btn');
-            
-            if (mobileMenu && !mobileMenu.contains(event.target as Node) && 
-                hamburgerBtn && !hamburgerBtn.contains(event.target as Node)) {
+            const menu = document.getElementById('mobile-menu');
+            const btn  = document.getElementById('hamburger-btn');
+            if (menu && !menu.contains(event.target as Node) &&
+                btn  && !btn.contains(event.target as Node)) {
                 setIsMenuOpen(false);
             }
         };
-        
         document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
+        return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
     return (
-        <header className="border-double border-b-2 border-[#27095E] bg-[rgba(100,23,242,0.06)] relative">
-            <nav className="flex items-center justify-between px-4 py-2">
-                {/* Current page name (mobile) */}
-                <div className="lg:hidden">
-                    <span className="header-text active">{getCurrentPageName()}</span>
-                </div>
-                
-                {/* Desktop navigation */}
-                <div className="header-container hidden lg:flex lg:gap-x-12">
+        <header className="site-header">
+            <nav className="header-inner">
+                {/* Logo — links home, always visible */}
+                <Link href="/" className="site-logo">
+                    Pedro Cisdeli
+                </Link>
+
+                {/* Desktop nav */}
+                <div className="header-nav">
                     {navigation.map((item) => (
-                        <Link legacyBehavior key={item.name} href={item.href} passHref>
-                            <a className={`leading-6 header-text ${pathname === item.href ? 'active' : ''}`}>
-                                {item.name}
-                            </a>
+                        <Link
+                            key={item.name}
+                            href={item.href}
+                            className={`nav-link ${pathname === item.href ? 'active' : ''}`}
+                        >
+                            {item.name}
                         </Link>
                     ))}
                 </div>
-                
-                {/* Hamburger button */}
+
+                {/* Hamburger (mobile only) */}
                 <button
                     id="hamburger-btn"
-                    className="lg:hidden flex flex-col justify-between h-5 w-6"
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    className="hamburger lg:hidden"
+                    onClick={() => setIsMenuOpen((o) => !o)}
                     aria-label="Toggle menu"
+                    aria-expanded={isMenuOpen}
                 >
-                    <span className={`bg-white h-0.5 w-full transform transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-                    <span className={`bg-white h-0.5 w-full transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                    <span className={`bg-white h-0.5 w-full transform transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                    <span className={`hamburger-line ${isMenuOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
+                    <span className={`hamburger-line ${isMenuOpen ? 'opacity-0' : ''}`} />
+                    <span className={`hamburger-line ${isMenuOpen ? '-rotate-45 -translate-y-[9px]' : ''}`} />
                 </button>
             </nav>
-            
-            {/* Mobile dropdown menu */}
+
+            {/* Mobile dropdown */}
             {isMenuOpen && (
-                <div 
-                    id="mobile-menu"
-                    className="lg:hidden absolute right-0 left-0 bg-[#080808] z-10 shadow-lg mobile-menu"
-                >
-                    <div className="py-3 px-4 flex flex-col space-y-4">
-                        {navigation.map((item) => (
-                            <Link legacyBehavior key={item.name} href={item.href} passHref>
-                                <a 
-                                    className={`header-text ${pathname === item.href ? 'active' : ''}`}
-                                    onClick={() => setIsMenuOpen(false)}
-                                >
-                                    {item.name}
-                                </a>
-                            </Link>
-                        ))}
-                    </div>
+                <div id="mobile-menu" className="mobile-menu">
+                    {navigation.map((item) => (
+                        <Link
+                            key={item.name}
+                            href={item.href}
+                            className={`mobile-nav-link ${pathname === item.href ? 'active' : ''}`}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            {item.name}
+                        </Link>
+                    ))}
                 </div>
             )}
         </header>

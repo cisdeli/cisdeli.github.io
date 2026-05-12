@@ -1,8 +1,10 @@
 import Header from '@/app/ui/header'
+import Footer from '@/app/ui/footer'
 const FourthSection = () => {
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
             <Header />
+            <main className="flex-1">
             <div id="fourthSection">
                 <div className="flex flex-col justify-center items-center">
                 </div>
@@ -21,6 +23,8 @@ const FourthSection = () => {
                     </div>
                 </div>
             </div>
+            </main>
+            <Footer />
         </div>
     );
 };

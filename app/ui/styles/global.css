@@ -2,65 +2,350 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
 :root {
-    --background-color: #080808;
-    --white: #FFFFFF;
-    --dark-white: #D7CDCC;
-    --gray: #59656F;
-    --dark-purple: #1D1E2C;
+    --font-display: var(--font-syne, 'Syne'), sans-serif;
+    --font-body:    var(--font-inter, 'Inter'), sans-serif;
+
+    --bg:         #080808;
+    --white:      #ffffff;
+    --off-white:  #eae6e5;
+    --muted:      #c4bab8;
+    --subtle:     #59656F;
+    --border:     rgba(137, 78, 210, 0.18);
+
+    --purple:     #894ed2;
+    --teal:       #1fa6c1;
+
+    --content-x:  5vw;
 }
 
-.gradient {
-    background-image: linear-gradient(45deg,
-            #894ed2 0%,
-            #1fa6c1 25%,
-            #1794ab 50%,
-            #894ed2 100%);
-    background-size: 100%;
-    background-repeat: repeat;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--bg);
+    font-family: var(--font-body);
+    color: var(--muted);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Ambient purple glow at top of every page */
+body::before {
+    content: '';
+    position: fixed;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+    height: 60vh;
+    background: radial-gradient(ellipse, rgba(137, 78, 210, 0.07) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Film-grain texture for depth */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 999;
 }
 
 .content {
-    margin-right: 4vw;
-    margin-left: 4vw;
+    margin-right: var(--content-x);
+    margin-left: var(--content-x);
+    position: relative;
+    z-index: 1;
 }
 
-body {
-    background-color: var(--background-color);
+/* ─── Gradient utility ───────────────────────────────────────────────────── */
+.gradient {
+    background-image: linear-gradient(100deg, var(--purple) 0%, var(--teal) 50%, var(--purple) 100%);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 5s ease infinite;
 }
 
+@keyframes gradientFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50%       { background-position: 100% 50%; }
+}
+
+/* ─── Typography ─────────────────────────────────────────────────────────── */
 .section-title {
+    font-family: var(--font-display);
     color: var(--white);
-    font-size: 13vh;
-    font-weight: 500;
-    line-height: 0.9;
-    margin-bottom: 0px;
+    font-size: clamp(3.5rem, 11vw, 9rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
 }
 
 .section-subtitle {
-    color: white;
-    font-size: 3.5vh;
-    font-weight: light;
-    margin-top: 8px;
-    margin-bottom: 0px;
+    font-family: var(--font-body);
+    color: var(--subtle);
+    font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
 }
 
-
 .item-title {
+    font-family: var(--font-display);
     color: var(--white);
-    font-size: 8vh;
-    font-weight: 500;
-    line-height: 0.9;
-    margin-bottom: 0px;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.4rem;
 }
 
 .item-text {
+    font-family: var(--font-body);
+    color: var(--muted);
+    font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+    font-weight: 300;
+    line-height: 1.85;
+}
+
+.item-text .font-bold,
+.item-text .font-semibold,
+.item-text strong {
+    color: var(--off-white);
+    font-weight: 500;
+}
+
+/* ─── Accent line ────────────────────────────────────────────────────────── */
+.accent-line {
+    display: block;
+    width: 2.5rem;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--purple), var(--teal));
+    border-radius: 2px;
+    margin-top: 0.75rem;
+}
+
+/* ─── Tech pills ─────────────────────────────────────────────────────────── */
+.tech-label {
+    font-family: var(--font-body);
+    color: var(--subtle);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.tech-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.22rem 0.65rem;
+    border-radius: 9999px;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--muted);
+    background: rgba(137, 78, 210, 0.08);
+    border: 1px solid rgba(137, 78, 210, 0.2);
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.tech-pill:hover {
+    background: rgba(31, 166, 193, 0.1);
+    border-color: rgba(31, 166, 193, 0.35);
     color: var(--white);
-    font-size: 2.5vh;
-    font-weight: 200;
-    text-justify: inter-word;
-    margin-top: 15px;
-    /* margin-bottom: 20px; */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(31, 166, 193, 0.12);
+}
+
+/* ─── Canvas integration ─────────────────────────────────────────────────── */
+.canvas-fade {
+    -webkit-mask-image: radial-gradient(ellipse 75% 78% at 58% 50%,
+        black 20%, rgba(0,0,0,0.8) 45%, transparent 72%);
+    mask-image: radial-gradient(ellipse 75% 78% at 58% 50%,
+        black 20%, rgba(0,0,0,0.8) 45%, transparent 72%);
+    filter: drop-shadow(0 0 55px rgba(100, 23, 242, 0.28));
+}
+
+/* Mobile canvas wrapper */
+.canvas-mobile-clip {
+    width: 260px;
+    height: 347px;
+    overflow: hidden;
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%,
+        black 30%, transparent 80%);
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%,
+        black 30%, transparent 80%);
+    filter: drop-shadow(0 0 35px rgba(100, 23, 242, 0.22));
+}
+
+.canvas-mobile-scale {
+    transform: scale(0.578);
+    transform-origin: top left;
+    width: 450px;
+    height: 600px;
+}
+
+/* ─── Hint text ──────────────────────────────────────────────────────────── */
+.hint-text {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: var(--subtle);
+    font-style: italic;
+    opacity: 0.65;
+    letter-spacing: 0.02em;
+}
+
+/* ─── Page section items (USP, Ciampitti, Projects) ─────────────────────── */
+.page-content {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+.section-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-item:last-child {
+    border-bottom: none;
+}
+
+@media (min-width: 768px) {
+    .section-item {
+        flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+        padding: 3.5rem 0;
+    }
+}
+
+.section-item-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Responsive image inside a section */
+.section-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border-radius: 4px;
+}
+
+@media (min-width: 768px) {
+    .section-img {
+        margin: 0;
+        flex-shrink: 0;
+    }
+}
+
+/* Scaled P5 canvas for project pages on mobile */
+.canvas-project-clip {
+    width: 248px;
+    height: 330px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.canvas-project-scale {
+    transform: scale(0.55);
+    transform-origin: top left;
+    width: 450px;
+    height: 600px;
+}
+
+@media (min-width: 768px) {
+    .canvas-project-clip {
+        width: 450px;
+        height: 600px;
+        overflow: visible;
+        margin: 0;
+    }
+    .canvas-project-scale {
+        transform: none;
+    }
+}
+
+/* ─── Section divider ────────────────────────────────────────────────────── */
+.divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border) 30%, var(--border) 70%, transparent);
+    margin: 3rem 0;
+}
+
+/* ─── Entrance animations ────────────────────────────────────────────────── */
+.fade-up   { animation: fadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.fade-in   { animation: fadeIn 1s ease both; }
+
+.delay-1   { animation-delay: 0.08s; }
+.delay-2   { animation-delay: 0.18s; }
+.delay-3   { animation-delay: 0.30s; }
+.delay-4   { animation-delay: 0.45s; }
+.delay-5   { animation-delay: 0.62s; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────── */
+.footer-divider {
+    border-color: var(--border);
+}
+
+.social-icon-link {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--subtle);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.social-icon-link svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+}
+
+.social-icon-link:hover {
+    color: var(--white);
+}
+
+.social-icon-link:hover svg {
+    color: var(--teal);
 }
