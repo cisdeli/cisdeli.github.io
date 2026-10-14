@@ -469,6 +469,24 @@ body::after {
 
 .hero-title { margin: 0; font: inherit; }
 
+/* Logo mark to the left of the name lines, links underneath */
+.hero-intro-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.25rem;
+}
+
+/* The 56-cell mark needs ~3px per cell to read as dots, so keep it large */
+.hero-logo {
+    flex: none;
+    width: 10rem;
+    height: auto;
+    /* The leaf is diagonal (tip top-right), so let its tip reach over the empty
+       space above the text instead of leaving a gap beside the body */
+    margin-right: -2rem;
+}
+
 .hero-socials {
     margin-top: 1.25rem;
     display: flex;
@@ -480,7 +498,7 @@ body::after {
 }
 
 /* Right-aligned so the text ends just before the fern's left edge */
-.hero-note-left  { right: 62%; top: 74%; text-align: right; }
+.hero-note-left  { right: 62%; top: 68%; text-align: right; }
 
 .scroll-cue {
     right: var(--content-x);
@@ -511,6 +529,8 @@ body::after {
     .hero-fern       { top: calc(var(--hh) * -0.36); left: 50%; height: calc(var(--hh) * 1.4); }
     .hero-note-left  { right: var(--content-x); left: var(--content-x); top: auto; bottom: 4.5rem; text-align: left; }
     /* Icons only on small screens, so the links fit on one line */
+    .hero-intro-row  { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .hero-logo       { width: 7rem; margin-right: 0; }
     .hero-socials    { justify-content: flex-start; flex-wrap: nowrap; gap: 1.4rem; }
     .hero-socials span { display: none; }
     .hero-socials svg  { width: 1.25rem; height: 1.25rem; }

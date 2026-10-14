@@ -15,12 +15,16 @@ const Hero = () => {
                 </div>
             </div>
 
-            <div className="hero-note hero-note-left fade-up delay-2">
-                <h1 className="hero-title">
-                    <strong className="hero-name">Pedro Cisdeli</strong>,<br />
-                    Software developer &amp; ML engineer,<br />
-                    Ph.D. student at Purdue University
-                </h1>
+            <div className="hero-note hero-note-left hero-intro fade-up delay-2">
+                <div className="hero-intro-row">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/logo-fern-56.svg" alt="" className="hero-logo" width={549} height={559} />
+                    <h1 className="hero-title">
+                        <strong className="hero-name">Pedro Cisdeli</strong>,<br />
+                        Software developer &amp; ML engineer,<br />
+                        Ph.D. student at Purdue University
+                    </h1>
+                </div>
                 <SocialLinks className="hero-socials" />
             </div>
 

@@ -19,6 +19,11 @@ const inter = Inter({
 export const metadata: Metadata = {
     title: "Pedro Cisdeli",
     description: "Software Developer & ML Engineer, Pedro Cisdeli",
+    // Static files in public/ (theme-aware SVG: color on light tab bars, off-white on dark)
+    icons: {
+        icon: { url: '/favicon.svg', type: 'image/svg+xml' },
+        apple: '/apple-touch-icon.png',
+    },
 };
 
 export default function RootLayout({
