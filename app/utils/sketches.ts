@@ -21,7 +21,7 @@ export const threeDSketch: Sketch = (p5: any) => {
 
     p5.draw = () => {
         p5.ortho(-zoom, zoom, zoom, -zoom, 0, 5000);
-        p5.background("#080808");
+        p5.clear(); // transparent, so the page backdrop shows through
         p5.rotateX(p5.frameCount * (-ma) * 0.01);
         p5.rotateY(p5.frameCount * (-p5.QUARTER_PI) * 0.01);
 
@@ -147,7 +147,7 @@ export const dcSketch: Sketch = (p5) => {
 
     p5.draw = () => {
 
-        p5.background("#080808");
+        p5.clear(); // transparent, so the page backdrop shows through
         dc.show(num_segments, width, height);
         if (dc.currentSegment >= dc.sentence.length) {
             p5.noLoop();

@@ -45,32 +45,23 @@ const socialLinks = [
     },
 ];
 
-export default function Footer() {
+// Profile links with icons (formerly the footer)
+export default function SocialLinks({ className = '' }: { className?: string }) {
     return (
-        <footer className="content mt-6 pb-8">
-            <div className="border-t footer-divider pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-                {/* Social links */}
-                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-6">
-                    {socialLinks.map(({ name, href, Icon }) => (
-                        <a
-                            key={name}
-                            href={href}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="social-icon-link"
-                            aria-label={name}
-                        >
-                            <Icon />
-                            <span>{name}</span>
-                        </a>
-                    ))}
-                </div>
-
-                {/* Copyright */}
-                <p className="text-xs text-[#59656F] whitespace-nowrap">
-                    © {new Date().getFullYear()} Pedro Cisdeli
-                </p>
-            </div>
-        </footer>
+        <nav className={`social-links ${className}`} aria-label="Profiles">
+            {socialLinks.map(({ name, href, Icon }) => (
+                <a
+                    key={name}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-icon-link"
+                    aria-label={name}
+                >
+                    <Icon />
+                    <span>{name}</span>
+                </a>
+            ))}
+        </nav>
     );
 }
