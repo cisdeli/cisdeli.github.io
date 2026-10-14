@@ -661,3 +661,9 @@ body::after {
 .page-section .section-img-lg {
     mix-blend-mode: lighten;
 }
+
+/* Fade a shader's edges to transparent so it melts into the page instead of reading as a box */
+.shader-fade {
+    -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, black 55%, transparent 100%);
+    mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, black 55%, transparent 100%);
+}

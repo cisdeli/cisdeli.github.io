@@ -2,6 +2,9 @@
 import SectionHead from '@/app/ui/sectionHead'
 import LazySketch from '@/app/ui/lazySketch';
 import { dcSketch, caSketch, threeDSketch, phyllotaxisSketch } from '@/app/utils/sketches';
+import ShaderCanvas from '@/app/ui/shaderCanvas';
+import rubiksShader from '@/app/shaders/rubiks.frag';
+import lightspeedShader from '@/app/shaders/lightspeed.frag';
 
 const PersonalProjects = () => {
     return (
@@ -9,8 +12,40 @@ const PersonalProjects = () => {
             <SectionHead
                 label="Side work"
                 title="Personal Projects"
-                intro="Fractals and generative sketches built with p5.js."
+                intro="Shaders, fractals and generative sketches."
             />
+
+            <div className="section-item">
+                <div className="section-item-text">
+                    <text className="item-title">Rubik&apos;s Cube</text>
+                    <text className="section-subtitle">Rendered in a fragment shader, solved with CUDA (soon)</text>
+                    <p className="item-text">
+                        A side project to render a Rubik&apos;s cube entirely in a <span className="font-bold">fragment shader</span> and, eventually, solve it with <span className="font-bold">CUDA</span>. The viewer is done, the cube is raymarched and the layer turns are animated. It is running live in your browser right now. The solver is still in the works, so for now it plays a scramble and then the same moves in reverse to get back to a solved cube. The viewer is built with{' '}
+                        <span className="gradient"><a href="https://github.com/cisdeli/ShaderHub" target="_blank" rel="noreferrer">ShaderHub</a></span>.
+                    </p>
+                </div>
+                <div className="canvas-project-clip">
+                    <div className="canvas-project-scale">
+                        <ShaderCanvas source={rubiksShader} className="fern-canvas" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="section-item">
+                <div className="section-item-text">
+                    <text className="item-title">ShaderHub</text>
+                    <text className="section-subtitle">A Shadertoy-style GLSL runner with hot reload</text>
+                    <p className="item-text">
+                        I prefer writing code in my Neovim setup, so I built a minimal <span className="font-bold">Shadertoy-style runner</span> to stay in the editor: write a fragment shader, save it, and see the changes live. It is written in <span className="font-bold">C++ and OpenGL</span>, supports Shadertoy-like uniforms and switches between shaders in a folder. The one running here is <span className="font-bold">Lightspeed</span>, one of my own shaders. Check it out on{' '}
+                        <span className="gradient"><a href="https://github.com/cisdeli/ShaderHub" target="_blank" rel="noreferrer">GitHub</a></span>.
+                    </p>
+                </div>
+                <div className="canvas-project-clip">
+                    <div className="canvas-project-scale">
+                        <ShaderCanvas source={lightspeedShader} blend="glow" maxDpr={1} className="fern-canvas shader-fade" />
+                    </div>
+                </div>
+            </div>
 
             <div className="section-item">
                 <div className="section-item-text">

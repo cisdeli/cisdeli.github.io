@@ -13,6 +13,11 @@ const nextConfig = {
                 filename: 'static/media/[name][ext]',
             },
         });
+        // Fragment shaders are imported as plain strings
+        config.module.rules.push({
+            test: /\.frag$/,
+            type: 'asset/source',
+        });
         return config;
     },
 };
