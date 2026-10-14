@@ -2,7 +2,12 @@
 import { useEffect, useRef } from 'react';
 
 // Plays only while on screen and doesn't download until it gets close
-export default function LazyVideo({ src, className }: { src: string; className?: string }) {
+export default function LazyVideo({ src, poster, aspect = '16 / 9', className }: {
+    src: string;
+    poster?: string;
+    aspect?: string;
+    className?: string;
+}) {
     const ref = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
@@ -27,8 +32,9 @@ export default function LazyVideo({ src, className }: { src: string; className?:
             loop
             playsInline
             preload="none"
+            poster={poster}
             className={className}
-            style={{ objectFit: 'cover', aspectRatio: '16 / 9' }}
+            style={{ objectFit: 'cover', aspectRatio: aspect }}
         />
     );
 }

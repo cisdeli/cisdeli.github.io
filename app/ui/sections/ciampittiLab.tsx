@@ -16,6 +16,27 @@ const CiampittiLab = () => {
                 intro="Digital and precision agriculture research."
             />
 
+            {/* ── PhD ───────────────────────────────────────────── */}
+
+            <div className="section-item">
+                <div className="section-item-text">
+                    <text className="item-title">EARS</text>
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <text className="section-subtitle">Early Assessment of Reproductive-stage Signals for Yield Prediction from Multiview Maize Dataset</text>
+                        <span className="year-badge">Ongoing</span>
+                    </div>
+                    <p className="item-text">
+                        This is the main project of my Ph.D. I know, the title is too long, but that&apos;s why the acronym is here. And it&apos;s hard to beat EARS as a name for a project that involves so many corn ears. The core idea is to check how early in the reproductive stages, and how accurately, we can predict the final yield of each ear at the end of the season. To do this we have a <span className="font-bold">multi-field database</span> that spans from nurseries to nitrogen trials, greenhouse studies and production-size farmer fields. Each sample consists of <span className="font-bold">six views of the ear</span>, taken in the field. We track the same ears across all reproductive stages and then measure their final traits and yield components. This database allows us to perform <span className="font-bold">3D reconstruction</span> and use a <span className="font-bold">multimodal architecture</span> for the yield forecasts. First papers are coming soon!
+                    </p>
+                </div>
+                <LazyVideo
+                    src="/ears_pipeline.mp4"
+                    poster="/ears_pipeline.jpg"
+                    aspect="4 / 3"
+                    className="section-img-lg"
+                />
+            </div>
+
             {/* ── 2026 ──────────────────────────────────────────── */}
 
             <div className="section-item">
