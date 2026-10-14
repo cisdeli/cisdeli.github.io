@@ -13,8 +13,8 @@ const About = () => {
             <div>
                 <div className="item-text space-y-5">
                     <p>
-                        Brazilian engineer bridging the gap between the field and technology,
-                        currently at{' '}
+                        I&rsquo;m a Brazilian engineer bridging the gap between the field and
+                        technology, currently at{' '}
                         <a
                             href="https://ciampitti-lab.github.io/"
                             target="_blank"
@@ -30,9 +30,9 @@ const About = () => {
                         .
                     </p>
                     <p>
-                        CS graduate from the{' '}
-                        <span className="font-semibold">University of São Paulo</span>,
-                        currently pursuing a{' '}
+                        I graduated in CS from the{' '}
+                        <span className="font-semibold">University of São Paulo</span>{' '}
+                        and I&rsquo;m currently pursuing a{' '}
                         <span className="font-semibold">Ph.D. at Purdue University</span>{' '}
                         on ML-driven agricultural systems.
                     </p>
