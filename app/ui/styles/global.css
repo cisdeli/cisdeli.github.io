@@ -427,18 +427,17 @@ body::after {
 
 
 /* Runs well past the hero so the extended fern keeps going down through the About
-   section, then fades out. Clips the top and sides only. */
+   section, and the motes left by its blast can drift below it. The fern's fade-out is
+   done in its shader (see hero.tsx). Clips the top and sides only. */
 .hero-fern-wrap {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: calc(var(--hh) * 2);
+    height: calc(var(--hh) * 2.4);
     overflow: hidden;
     z-index: 2;
     pointer-events: none;
-    -webkit-mask-image: linear-gradient(black 75%, transparent);
-    mask-image: linear-gradient(black 75%, transparent);
 }
 
 /* Frame of the original fern (1.8x hero height), turned upside down and tilted 35deg:

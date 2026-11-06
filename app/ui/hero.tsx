@@ -8,11 +8,14 @@ const Hero = () => {
             {/* Lighting */}
             <div className="hero-backdrop" aria-hidden="true" />
 
-            {/* Main fern, angled and zoomed; runs past the bottom of the hero */}
+            {/* Main fern, angled and zoomed; runs past the bottom of the hero. The wrap is 2.4 hero
+                heights tall: the fern fades out between 1.5 and 2, the motes can drift further */}
             <div className="hero-fern-wrap" aria-hidden="true">
-                <div className="hero-fern fade-in delay-2">
-                    <FernCanvas points={500000} perFrame={1000} maxDpr={1.5} extend={3} className="fern-canvas" />
-                </div>
+                <FernCanvas
+                    points={500000} perFrame={1000} maxDpr={1.5} extend={3} blastAt={0.3}
+                    floaters={3500} floatIn="#about" tailFade={[1.5 / 2.4, 2 / 2.4]}
+                    frameClassName="hero-fern" className="fade-in delay-2"
+                />
             </div>
 
             <div className="hero-note hero-note-left hero-intro fade-up delay-2">
