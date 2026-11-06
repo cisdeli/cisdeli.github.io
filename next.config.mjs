@@ -1,3 +1,7 @@
+import createMDX from '@next/mdx';
+import rehypePrettyCode from 'rehype-pretty-code';
+import codeTheme from './app/writing/codeTheme.mjs';
+
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
@@ -22,4 +26,11 @@ const nextConfig = {
     },
 };
 
-module.exports = nextConfig;
+// Writing posts are MDX; code blocks are highlighted at build time (no client JS)
+const withMDX = createMDX({
+    options: {
+        rehypePlugins: [[rehypePrettyCode, { theme: codeTheme, keepBackground: false }]],
+    },
+});
+
+export default withMDX(nextConfig);

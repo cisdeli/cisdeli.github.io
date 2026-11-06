@@ -1,10 +1,13 @@
 'use client'
 import FernCanvas from '@/app/ui/fernCanvas';
 import SocialLinks from '@/app/ui/socialLinks';
+import SiteNav from '@/app/ui/siteNav';
 
 const Hero = () => {
     return (
         <section className="hero" id="heroSection">
+            <SiteNav current="home" className="fade-in delay-3" />
+
             {/* Lighting */}
             <div className="hero-backdrop" aria-hidden="true" />
 

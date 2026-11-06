@@ -539,6 +539,264 @@ body::after {
     .scroll-cue::after { animation: none; }
 }
 
+/* ─── Site nav: small corner links, no bar (siteNav.tsx) ─────────────────── */
+.site-nav {
+    position: absolute;
+    top: 1.75rem;
+    left: var(--content-x);
+    right: var(--content-x);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.site-nav a { pointer-events: auto; }
+
+.site-nav-logo img { display: block; width: 2.75rem; height: auto; }
+
+.site-nav-links {
+    margin-left: auto;
+    display: flex;
+    gap: 2rem;
+}
+
+.site-nav-link {
+    position: relative;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.2s ease;
+}
+
+/* Gradient hairline that draws in under the hovered / current link */
+.site-nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.45rem;
+    height: 1px;
+    background: linear-gradient(90deg, var(--purple), var(--teal));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site-nav-link:hover,
+.site-nav-link[aria-current='page'] { color: var(--white); }
+
+.site-nav-link:hover::after,
+.site-nav-link[aria-current='page']::after { transform: none; }
+
+@media (max-width: 767px) {
+    .site-nav { top: 1.25rem; }
+    .site-nav-links { gap: 1.5rem; }
+}
+
+/* ─── Writing: listing and posts ─────────────────────────────────────────── */
+.writing, .post {
+    max-width: 44rem;
+    padding: 7rem 0 5rem;
+}
+
+@media (min-width: 768px) {
+    .writing, .post { margin-left: auto; margin-right: auto; }
+}
+
+.writing-empty { text-align: center; }
+
+.post-list { border-top: 1px solid var(--border); }
+.post-list li { border-bottom: 1px solid var(--border); }
+
+.post-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.75rem 0;
+}
+
+.post-date {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--subtle);
+}
+
+.post-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--white);
+    transition: color 0.2s ease;
+}
+
+.post-row:hover .post-title {
+    background-image: linear-gradient(100deg, var(--purple), var(--teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.post-summary {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.post-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding-bottom: 3.5rem;
+}
+
+.post-head .accent-line { margin-top: 0.25rem; }
+
+.post-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-wrap: balance;
+}
+
+/* Post body typography */
+.post-body {
+    font-family: var(--font-body);
+    font-size: 1.02rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--muted);
+}
+
+.post-body > * + * { margin-top: 1.25rem; }
+
+.post-body h2,
+.post-body h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--white);
+}
+.post-body h2 { font-size: 1.75rem; margin-top: 3rem; }
+.post-body h3 { font-size: 1.3rem;  margin-top: 2.25rem; }
+
+.post-body strong { color: var(--off-white); font-weight: 500; }
+
+.post-body a {
+    color: var(--off-white);
+    text-decoration: underline;
+    text-decoration-color: var(--purple);
+    text-underline-offset: 3px;
+}
+.post-body a:hover { text-decoration-color: var(--teal); }
+
+.post-body ul, .post-body ol { padding-left: 1.25rem; }
+.post-body ul { list-style: disc; }
+.post-body ol { list-style: decimal; }
+.post-body li + li { margin-top: 0.4rem; }
+.post-body li::marker { color: var(--purple); }
+
+.post-body blockquote {
+    border-left: 2px solid var(--purple);
+    padding-left: 1.25rem;
+    color: var(--off-white);
+    font-style: italic;
+}
+
+.post-body img { border-radius: 6px; }
+
+.post-body hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border) 30%, var(--border) 70%, transparent);
+    margin: 3rem 0;
+}
+
+/* Inline code */
+.post-body :not(pre) > code {
+    font-size: 0.88em;
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    background: rgba(137, 78, 210, 0.12);
+    color: var(--off-white);
+}
+
+/* Code blocks (highlighted at build time by rehype-pretty-code) */
+.post-body pre {
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+    padding: 1.25rem 0;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(18, 12, 30, 0.7);
+    font-size: 0.85rem;
+    line-height: 1.7;
+}
+.post-body pre code { display: grid; }
+.post-body pre [data-line] { padding: 0 1.25rem; }
+
+/* Live demos embedded in posts */
+.post-demo {
+    position: relative;
+    height: 26rem;
+    margin: 2.5rem 0;
+}
+
+.post-demo-frame {
+    position: absolute;
+    top: 3%;
+    bottom: 3%;
+    left: 50%;
+    aspect-ratio: 0.5;
+    transform: translateX(-50%);
+}
+
+/* Figures: a live demo with a small caption under it */
+.post-figure { margin: 2.5rem 0; }
+
+.post-caption {
+    margin-top: 0.9rem;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Copy machine demo: the 1:2 box it works in, outlined so the starting box reads */
+.copy-machine {
+    height: 26rem;
+    aspect-ratio: 0.5;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+.copy-machine canvas { display: block; width: 100%; height: 100%; }
+
+.post-foot {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
 /* ─── About ──────────────────────────────────────────────────────────────── */
 .about {
     z-index: 3; /* above the fern running in from the hero */

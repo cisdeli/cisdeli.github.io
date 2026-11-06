@@ -1,0 +1,95 @@
+import FernDemo from '@/app/writing/components/fernDemo';
+import CopyMachine from '@/app/writing/components/copyMachine';
+
+export const meta = {
+    title: 'Drawing a fern with four lines of math',
+    date: '2026-11-06',
+    summary: 'Rendering the fern fractal on my home page with a random walk, and a copy machine shader.',
+    draft: true,
+};
+
+The **Barnsley fern**, from Michael Barnsley's book
+*Fractals Everywhere* (1988), is my favorite fractal.
+And they are created by four rules applied over and over.
+
+<FernDemo />
+
+## Rules
+
+Each one is an affine map, it scales, rotates and shifts a point, `p' = A p + t`. Applied
+to the whole fern, each one lands on a part of it:
+
+- **f1** squashes everything onto the stem.
+- **f2** maps the whole fern onto the slightly smaller copy above the first pair of leaflets.
+- **f3** and **f4** map it onto the bottom-left and bottom-right leaflets.
+
+The fern is exactly the shape made of those four smaller copies of itself.
+Here is two ways to render it.
+
+## 1. The chaos game
+
+Start with any point, apply one of the maps picked at random, plot it, repeat. The point
+settles onto the fern within a few steps and then wanders all over it:
+
+```ts
+const maps = [
+    { a: 0,     b: 0,     c: 0,     d: 0.16, e: 0, f: 0,    p: 0.01 },
+    { a: 0.85,  b: 0.04,  c: -0.04, d: 0.85, e: 0, f: 1.6,  p: 0.85 },
+    { a: 0.2,   b: -0.26, c: 0.23,  d: 0.22, e: 0, f: 1.6,  p: 0.07 },
+    { a: -0.15, b: 0.28,  c: 0.26,  d: 0.24, e: 0, f: 0.44, p: 0.07 },
+];
+
+let x = 0, y = 0;
+for (let i = 0; i < 100_000; i++) {
+    // Pick a map with its probability
+    let r = Math.random(), m = maps[0];
+    for (const map of maps) { if ((r -= map.p) < 0) { m = map; break; } }
+
+    [x, y] = [m.a * x + m.b * y + m.e, m.c * x + m.d * y + m.f];
+    plot(x, y);
+}
+```
+
+The probabilities `p` only change how evenly the points spread, not the shape. `f2` gets
+85% because its copy covers most of the fern.
+
+## 2. The copy machine
+
+Take *any* picture, a plain box here. Paste four copies of it, each moved by one of the maps,
+and throw the original away. Do it again with the result, and again. Whatever you started
+with, after a few dozen rounds you're left with the fern.
+
+That's a perfect job for a fragment shader. Instead of moving copies forward, each pixel
+asks where each map would have brought it *from*, and lights up if any of those spots was
+lit in the previous round:
+
+```glsl
+const mat2 A[4] = mat2[4](
+    mat2(0.02, 0.0, 0.0, 0.16),
+    mat2(0.85, -0.04, 0.04, 0.85),
+    mat2(0.2, 0.23, -0.26, 0.22),
+    mat2(-0.15, 0.26, 0.28, 0.24)
+);
+const vec2 T[4] = vec2[4](vec2(0.0), vec2(0.0, 1.6), vec2(0.0, 1.6), vec2(0.0, 0.44));
+
+void main() {
+    vec2 q = LO + gl_FragCoord.xy / uRes * SIZE;
+    float v = 0.0;
+    for (int i = 0; i < 4; i++) {
+        vec2 uv = (inverse(A[i]) * (q - T[i]) - LO) / SIZE;
+        if (all(greaterThanEqual(uv, vec2(0.0))) && all(lessThan(uv, vec2(1.0))))
+            v = max(v, texture(uPrev, uv).r);
+    }
+    outColor = vec4(min(1.0, v * 1.5), 0.0, 0.0, 1.0);
+}
+```
+
+Run it a step at a time, feeding each result back in, and watch the box become a fern
+(GLSL matrices are column-major, which is why `b` and `c` look swapped):
+
+<CopyMachine />
+
+Every map shrinks things, so each round the picture forgets a little more of where it
+started and keeps only what the four maps agree on. That leftover is the fern. The tip
+takes longest: `f2` only shrinks things to 85% each round, so the original box fades out
+of it slowly.
