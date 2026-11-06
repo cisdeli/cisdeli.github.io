@@ -84,12 +84,8 @@ void main() {
 }
 ```
 
-Run it a step at a time, feeding each result back in, and watch the box become a fern
-(GLSL matrices are column-major, which is why `b` and `c` look swapped):
-
 <CopyMachine />
 
-Every map shrinks things, so each round the picture forgets a little more of where it
-started and keeps only what the four maps agree on. That leftover is the fern. The tip
-takes longest: `f2` only shrinks things to 85% each round, so the original box fades out
+Every map shrinks things, so each at step the picture keeps only what the four maps agree on.
+The tip takes longest since `f2` only shrinks things to 85% each round, causing the original box to fade out
 of it slowly.
