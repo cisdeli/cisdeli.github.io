@@ -312,19 +312,21 @@ export default function FernCanvas({
             kick();
         };
 
-        let raf = 0, visible = true, start = -1, last = 0, time = 0;
+        let raf = 0, visible = true, last = -1, time = 0, revealed = 0;
         const rate = perFrame * 60; // points per second, like perFrame at 60fps
 
         const frame = (now: number) => {
             raf = 0;
-            if (start < 0) { start = now; last = now; }
-            const dt = Math.min(0.05, (now - last) / 1000);
+            if (last < 0) last = now;
+            const elapsed = (now - last) / 1000;
+            const dt = Math.min(0.05, elapsed);
             last = now;
             time += dt;
 
-            // A blast finishes the reveal, so no new points pop up mid-air
-            if (target === 1) start = Math.min(start, now - (points / rate) * 1000);
-            const count = Math.min(points, Math.floor(((now - start) / 1000) * rate));
+            // The reveal holds while the fern is blown apart (it blasts as drawn so far) and
+            // picks up where it left off once it is back together
+            if (target === 0 && blastP === 0) revealed = Math.min(points, revealed + Math.min(0.25, elapsed) * rate);
+            const count = Math.floor(revealed);
             blastP = target > blastP
                 ? Math.min(1, blastP + dt / BLAST_TIME)
                 : Math.max(0, blastP - dt / RETURN_TIME);
@@ -354,7 +356,7 @@ export default function FernCanvas({
             }
 
             // Keep going while something is moving: the reveal, the blast, or drifting motes
-            const moving = count < points || blastP !== target || (blastP > 0 && floaters > 0);
+            const moving = (count < points && blastP === 0) || blastP !== target || (blastP > 0 && floaters > 0);
             if (moving && visible) raf = requestAnimationFrame(frame);
         };
         const kick = () => { if (!raf && visible) raf = requestAnimationFrame(frame); };
@@ -367,11 +369,11 @@ export default function FernCanvas({
         ro.observe(box);
         if (floatEl) ro.observe(floatEl);
 
-        // Pause off screen; the reveal clock pauses with it
+        // Pause off screen; the reveal pauses with it
         const io = new IntersectionObserver(([e]) => {
             visible = e.isIntersecting;
             if (visible) {
-                if (start >= 0) { const gap = performance.now() - last; start += gap; last += gap; }
+                last = -1;
                 kick();
             } else if (raf) {
                 cancelAnimationFrame(raf);
